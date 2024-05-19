@@ -5,19 +5,19 @@ def extract_features(pdf_file):
   page_wise_features = []
   for page_number in range(num_pages):
     page = pdf_document[page_number]
-    text = page.get_text()  # Extract text from current page
+    text = page.get_text()  
 
     # Tokenization
     tokens = re.findall(r'\b\w+\b', text)
     token_count = len(tokens)
 
     word_count = len(text.split())
-    sentence_count = len(text.split('.'))  # Assuming period-delimited sentences
+    sentence_count = len(text.split('.'))  
 
     # Create a dictionary for features of this page
     page_features = {
         'PDF File': pdf_file,
-        'Page Number': page_number + 1,  # Adjust for 1-based indexing
+        'Page Number': page_number + 1,  
         'Token Count': token_count,
         'Word Count': word_count,
         'Sentence Count': sentence_count,
@@ -30,10 +30,7 @@ def extract_features(pdf_file):
   return page_wise_features
 
 def create_page_wise_table(pdf_files):
-  """
-  Processes a list of PDF files, extracts page-wise features,
-  and returns a pandas DataFrame.
-  """
+  
   all_page_features = []
   for pdf_file in pdf_files:
     page_wise_features = extract_features(pdf_file)
